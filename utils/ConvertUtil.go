@@ -3,6 +3,7 @@ package utils
 import (
   "math"
   "strconv"
+  "reflect"
 )
 
 func StringToInt64(str string) int64 {
@@ -48,4 +49,15 @@ func Round(f float64, n int, roundHalfUp bool) float64 {
     f += 0.5
   }
   return math.Trunc((f/pow10_n)*pow10_n) / pow10_n
+}
+
+func StructToMap(obj interface{}) map[string]interface{} {
+	t := reflect.TypeOf(obj)
+	v := reflect.ValueOf(obj)
+
+	var data = make(map[string]interface{})
+	for i := 0; i < t.NumField(); i++ {
+		data[t.Field(i).Name] = v.Field(i).Interface()
+	}
+	return data
 }
