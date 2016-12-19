@@ -2,6 +2,7 @@ package utils
 
 import (
   "time"
+  "strings"
   "math/rand"
 )
 
@@ -16,4 +17,12 @@ func RandomNum(length int) string {
     sbNum.Append(r.Intn(9))
   }
   return sbNum.ToString()
+}
+
+func GenToken(lowercase bool) string {
+  uid := NewUUID().Hex()
+  if !lowercase {
+    return uid
+  }
+  return strings.ToUpper(uid)
 }
