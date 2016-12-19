@@ -26,3 +26,14 @@ func GenToken(lowercase bool) string {
   }
   return strings.ToUpper(uid)
 }
+
+func RandomStr(length int) string {
+  base := "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+  sb := NewStringBuilder()
+  r := rand.New(rand.NewSource(time.Now().UnixNano()))
+  for i := 0; i < length; i++ {
+      number := r.Intn(len(base) - 1)
+      sb.Append(base[number])
+  }
+  return sb.ToString()   
+}
