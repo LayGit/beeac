@@ -5,6 +5,7 @@ import (
   "crypto/aes"
   "crypto/cipher"
   "crypto/md5"
+  "crypto/sha1"
   "encoding/base64"
   "encoding/hex"
   "strings"
@@ -78,5 +79,11 @@ func PKCS5UnPadding(origData []byte) []byte {
 func MD5Encrypt(src string) string {
   h := md5.New()
   io.WriteString(h, src)
+  return hex.EncodeToString(h.Sum(nil))
+}
+
+func SHA1Encrypt(src string) string {
+  h := sha1.New()
+  h.Write([]byte(src))
   return hex.EncodeToString(h.Sum(nil))
 }
