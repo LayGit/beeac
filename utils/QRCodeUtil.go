@@ -7,6 +7,6 @@ func QRCodeEncode(url string, size int) string {
   if err != nil {
     return ""
   } else {
-    return Base64Encode(byt)
+    return "data:image/png;base64," + Base64Encode(byt)
   }
 }
