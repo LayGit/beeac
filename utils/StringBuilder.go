@@ -1,6 +1,7 @@
 package utils
 
 import (
+  "fmt"
   "bytes"
 )
 
@@ -13,7 +14,7 @@ func NewStringBuilder() *StringBuilder {
 }
 
 func (this *StringBuilder) Append(obj interface{}) {
-  this.buf.WriteString(obj.(string))
+  this.buf.WriteString(fmt.Sprintf("%v", obj))
 }
 
 func (this *StringBuilder) ToString() string {
